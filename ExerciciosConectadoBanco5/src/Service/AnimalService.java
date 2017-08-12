@@ -1,13 +1,13 @@
-package Animais;
+package Service;
 
-public class Animal {
+public class AnimalService {
 
 	private String nome;
 	private String cor;
 	private int qtdPatas;
 	private String retornaSom;
 
-	public Animal(String nome, String cor, int qtdPatas) {
+	public AnimalService(String nome, String cor, int qtdPatas) {
 		this.nome = nome;
 		this.cor = cor;
 		this.qtdPatas = qtdPatas;

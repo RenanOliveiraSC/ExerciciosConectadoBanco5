@@ -1,4 +1,4 @@
-package Animais;
+package Teste;
 
 public class Gato extends Animal {
 
