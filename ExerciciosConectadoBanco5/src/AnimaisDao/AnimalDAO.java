@@ -2,6 +2,7 @@ package AnimaisDao;
 
 public class AnimalDAO {
 
+	
 	private String nome;
 	private String cor;
 	private int qtdPatas;
