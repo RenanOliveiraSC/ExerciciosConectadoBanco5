@@ -1,13 +1,13 @@
-package AnimaisModel;
+package br.com.renan.animais.service;
 
-public class Animal {
+public class AnimalService {
 
 	private String nome;
 	private String cor;
 	private int qtdPatas;
 	private String retornaSom;
 
-	public Animal(String nome, String cor, int qtdPatas) {
+	public AnimalService(int codigo, String nome, String cor, int qtdPatas, String grupo, String retornasom2) {
 		this.nome = nome;
 		this.cor = cor;
 		this.qtdPatas = qtdPatas;

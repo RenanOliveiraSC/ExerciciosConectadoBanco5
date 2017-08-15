@@ -1,13 +1,13 @@
-package Service;
+package br.com.renan.animais.teste;
 
-public class AnimalService {
+public class TestaAnimal {
 
 	private String nome;
 	private String cor;
 	private int qtdPatas;
 	private String retornaSom;
 
-	public AnimalService(String nome, String cor, int qtdPatas) {
+	public TestaAnimal(String nome, String cor, int qtdPatas) {
 		this.nome = nome;
 		this.cor = cor;
 		this.qtdPatas = qtdPatas;

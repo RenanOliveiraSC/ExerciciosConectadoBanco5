@@ -1,4 +1,4 @@
-package jdbc;
+package br.com.renan.animais.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;

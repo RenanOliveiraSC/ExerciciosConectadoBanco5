@@ -1,18 +1,29 @@
-package Teste;
+package br.com.renan.animais.model;
+
+import java.sql.Connection;
 
 public class Animal {
 
+	private int codigo;
 	private String nome;
 	private String cor;
 	private int qtdPatas;
+	private String grupo;
 	private String retornaSom;
 
-	public Animal(String nome, String cor, int qtdPatas) {
+	public Animal(int codigo, String nome, String cor, int qtdPatas, String grupo, String som) {
+		this.codigo = codigo;
 		this.nome = nome;
 		this.cor = cor;
 		this.qtdPatas = qtdPatas;
+		this.grupo = grupo;
+		this.retornaSom = som;
 	}
 	
+		public Animal(Connection con) {
+		// TODO Auto-generated constructor stub
+	}
+
 		public String getNome() {
 		return nome;
 	}
@@ -45,4 +56,21 @@ public class Animal {
 		this.retornaSom = retornaSom;
 	}
 
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	
 }
