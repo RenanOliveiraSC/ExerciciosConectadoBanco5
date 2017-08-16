@@ -1,30 +1,44 @@
 package br.com.renan.animais.teste;
 
-import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
-import br.com.renan.animais.dao.CachorroDAO;
-import br.com.renan.animais.jdbc.ConnectionPoolOracle;
 import br.com.renan.animais.model.Cachorro;
 import br.com.renan.animais.service.CachorroService;
 
 public class TestaCachorro {
 
-	public static void main(String[] args) throws Exception {
-		try (Connection con = new ConnectionPoolOracle().getConnection()) {
-			//CachorroService cachorroService = new CachorroService();
-			CachorroDAO cachorroDao = new CachorroDAO(con);
-			cachorroDao.inserir("Marvin", "Marron", 4, "Cachorro");
-			cachorroDao.inserir("Bob", "Branco", 2, "Cachorro");
-			cachorroDao.inserir("Mel", "Cinza", 4, "Cachorro");
-			cachorroDao.inserir("Belinha", "Preta", 4, "Cachorro");
+	public static void main(String[] args) throws SQLException {
+		//Instância da classe Service
+		CachorroService cachorroService = new CachorroService();
+		// Listagem dos cachorros
+				List<Cachorro> lCachorros = cachorroService.listarCachorros();
+				for (Cachorro cac : lCachorros) {
+					imprimirCachorro(cac);
+				}
+				// Inserir um novo cachorro
+				Cachorro cachorro = new Cachorro("Bidu", "Amarelo", 4, "Cahorro");
+				cachorroService.inserir(cachorro);
 
-			List<Cachorro> lcachorro = cachorroService.listarcachorros();
-			for (Cachorro cachorro : lcachorro) {
-				System.out.println(cachorro.getNome());
+				// Alterar o nome de um cachorro
+				//cachorroService.alterar(21, "Pluto");
+
+				// Remover um cachorro
+				//cachorroService.excluir(26);
+
+				System.out.println();
+				
+				System.out.println("*******Lista Atualizada**********");
+				
+				// Listagem dos cachorros
+				List<Cachorro> lCachorros2 = cachorroService.listarCachorros();
+				for (Cachorro cac : lCachorros2) {
+					imprimirCachorro(cac);
+				}
 
 			}
-		}
 
-	}
-}
+			private static void imprimirCachorro(Cachorro cac) {
+				System.out.println("Nome: "+ cac.getNome() + ", Som: "+cac.getSom());
+			}
+		}

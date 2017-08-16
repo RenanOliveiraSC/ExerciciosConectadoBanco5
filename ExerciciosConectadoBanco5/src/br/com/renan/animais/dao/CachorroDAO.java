@@ -26,13 +26,13 @@ public class CachorroDAO {
 		statement.setString(2, cachorro.getCor());
 		statement.setInt(3, cachorro.getQtdPatas());
 		statement.setString(4, cachorro.getGrupo());
-		statement.setString(4, cachorro.getSom());
+		statement.setString(5, cachorro.getSom());
 		
 		return statement.executeUpdate() > 0;
 	}
 
 	public boolean alterar(Integer codigo, String nome) throws SQLException{
-		String sql = "UPDATE CACHORRO SET CAC_NOME = ? WHERE CAC_CODIGO = ?";
+		String sql = "UPDATE CACHORRO SET ANI_NOME = ? WHERE ANI_CODIGO = ?";
 		 
 		PreparedStatement statement = con.prepareStatement(sql);
 		statement.setString(1, nome);
@@ -42,7 +42,7 @@ public class CachorroDAO {
 	}
 	
 	public boolean excluir(Integer codigo) throws SQLException{
-		String sql = "DELETE CACHORRO WHERE CAC_CODIGO = ?";
+		String sql = "DELETE CACHORRO WHERE ANI_CODIGO = ?";
 		 
 		PreparedStatement statement = con.prepareStatement(sql);
 		statement.setInt(1, codigo);

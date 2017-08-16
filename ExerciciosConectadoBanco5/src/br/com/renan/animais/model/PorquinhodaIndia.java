@@ -8,7 +8,7 @@ public class PorquinhodaIndia extends Animal {
 	}
 
 	public PorquinhodaIndia(String nome, String cor, Integer qtdPatas, String grupo) {
-		super(nome, cor, qtdPatas, grupo, "Miau");
+		super(nome, cor, qtdPatas, grupo, "Nhôi");
 	}
 	
 }

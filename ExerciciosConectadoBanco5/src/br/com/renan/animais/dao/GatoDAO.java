@@ -26,6 +26,7 @@ public class GatoDAO {
 		statement.setString(2, gato.getCor());
 		statement.setInt(3, gato.getQtdPatas());
 		statement.setString(4, gato.getGrupo());
+		statement.setString(5, gato.getSom());
 		
 		return statement.executeUpdate() > 0;
 	}

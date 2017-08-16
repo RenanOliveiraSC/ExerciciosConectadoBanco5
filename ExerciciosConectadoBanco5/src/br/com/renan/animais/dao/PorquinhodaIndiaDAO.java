@@ -24,6 +24,7 @@ public class PorquinhodaIndiaDAO {
 		statement.setString(2, PorquinhodaIndia.getCor());
 		statement.setInt(3, PorquinhodaIndia.getQtdPatas());
 		statement.setString(4, PorquinhodaIndia.getGrupo());
+		statement.setString(5, PorquinhodaIndia.getSom());
 
 		return statement.executeUpdate() > 0;
 	}
