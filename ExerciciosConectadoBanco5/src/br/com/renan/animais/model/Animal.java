@@ -9,19 +9,31 @@ public class Animal {
 	private String cor;
 	private int qtdPatas;
 	private String grupo;
-	private String retornaSom;
+	public String getSom() {
+		return som;
+	}
 
-	public Animal(int codigo, String nome, String cor, int qtdPatas, String grupo, String som) {
+	public void setSom(String som) {
+		this.som = som;
+	}
+
+	private String som;
+
+	public Animal(Integer codigo, String nome, String cor, Integer qtdPatas, String grupo, String som) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.cor = cor;
 		this.qtdPatas = qtdPatas;
 		this.grupo = grupo;
-		this.retornaSom = som;
+		this.som = som;
 	}
 	
-		public Animal(Connection con) {
-		// TODO Auto-generated constructor stub
+	public Animal(String nome, String cor, Integer qtdPatas,String grupo, String som) {
+		this.nome = nome;
+		this.cor = cor;
+		this.qtdPatas = qtdPatas;
+		this.grupo = grupo;
+		this.som = som;
 	}
 
 		public String getNome() {
@@ -48,12 +60,12 @@ public class Animal {
 		this.qtdPatas = qtdPatas;
 	}
 
-	public String getRetornaSom() {
-		return retornaSom;
+	public String getsom() {
+		return som;
 	}
 
-	public void setRetornaSom(String retornaSom) {
-		this.retornaSom = retornaSom;
+	public void setsom(String som) {
+		this.som = som;
 	}
 
 	public String getGrupo() {

@@ -12,32 +12,48 @@ import br.com.renan.animais.model.Gato;
 
 public class GatoDAO {
 
-	private Connection con;
-
-	public GatoDAO(Connection con2) {
-		// TODO Auto-generated constructor stub
+	private final Connection conn;	
+	
+	public GatoDAO(Connection con) {
+		this.conn = con;
 	}
 
-	public void Animal(Connection con) {
-		this.con = con;
+	public boolean inserir(Gato gato) throws SQLException {
+		String sql = "INSERT INTO GATO (ANI_CODIGO, ANI_NOME, ANI_COR, ANI_QTDPATAS, ANI_GRUPO, ANI_SOM) VALUES (SEQ_GATO.nextval, ?,?,?,?,?)";
+
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setString(1, gato.getNome());
+		statement.setString(2, gato.getCor());
+		statement.setInt(3, gato.getQtdPatas());
+		statement.setString(4, gato.getGrupo());
+		
+		return statement.executeUpdate() > 0;
 	}
 
-	public boolean inserir(String nome, String cor, int qtdpatas, String grupo) throws SQLException {
-		String sql = "INSERT INTO ANIMAL (ANI_CODIGO, ANI_NOME, ANI_COR, ANI_QTDPATAS, ANI_GRUPO, ANI_SOM) VALUES (SEQ_GATO.nextval, ?,?,?,?)";
+	public boolean alterar(Integer codigo, String nome) throws SQLException {
+		String sql = "UPDATE GATO SET ANI_NOME = ? WHERE ANI_CODIGO = ?";
 
-		PreparedStatement statement = con.prepareStatement(sql);
+		PreparedStatement statement = conn.prepareStatement(sql);
 		statement.setString(1, nome);
-		statement.setString(2, cor);
-		statement.setInt(3, qtdpatas);
-		statement.setString(4, grupo);
+		statement.setInt(2, codigo);
+
+		return statement.executeUpdate() > 0;
+	}
+	
+	public boolean excluir(Integer codigo) throws SQLException {
+		String sql = "DELETE GATO WHERE ANI_CODIGO = ?";
+
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, codigo);
 
 		return statement.executeUpdate() > 0;
 	}
 
+	
 	public List<Gato> lista() throws SQLException {
 		List<Gato> lGato = new ArrayList<>();
-		String sql = "Select * from ANIMAL";
-		try (PreparedStatement stmt = con.prepareStatement(sql)) {
+		String sql = "Select * from GATO";
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.execute();
 			try (ResultSet rs = stmt.getResultSet()) {
 				while (rs.next()) {
@@ -46,8 +62,10 @@ public class GatoDAO {
 					String cor = rs.getString("ANI_COR");
 					int qtdPatas = rs.getInt("ANI_QTDPATAS");
 					String grupo = rs.getString("ANI_GRUPO");
-					String retornaSom = rs.getString("ANI_SOM");
-					lGato.add(new Gato(codigo, nome, cor, qtdPatas, grupo, retornaSom));
+					String som = rs.getString("ANI_SOM");
+					Gato gato = new Gato(codigo, nome, cor, qtdPatas, grupo, som);
+					lGato.add(gato);
+					
 				}
 			}
 

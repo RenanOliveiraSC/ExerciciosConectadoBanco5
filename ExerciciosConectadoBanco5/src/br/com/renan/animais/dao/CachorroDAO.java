@@ -18,21 +18,41 @@ public class CachorroDAO {
 
 	}
 
-	public boolean inserir(String nome, String cor, int qtdpatas, String grupo) throws SQLException {
-		String sql = "INSERT INTO ANIMAL (ANI_CODIGO, ANI_NOME, ANI_COR, ANI_QTDPATAS, ANI_GRUPO, ANI_SOM) VALUES (SEQ_CACHORRO.nextval, ?,?,?,?)";
+	public boolean inserir(Cachorro cachorro) throws SQLException {
+		String sql = "INSERT INTO CACHORRO (ANI_CODIGO, ANI_NOME, ANI_COR, ANI_QTDPATAS, ANI_GRUPO, ANI_SOM) VALUES (SEQ_CACHORRO.nextval, ?,?,?,?,?)";
 
 		PreparedStatement statement = con.prepareStatement(sql);
-		statement.setString(1, nome);
-		statement.setString(2, cor);
-		statement.setInt(3, qtdpatas);
-		statement.setString(4, grupo);
-
+		statement.setString(1, cachorro.getNome());
+		statement.setString(2, cachorro.getCor());
+		statement.setInt(3, cachorro.getQtdPatas());
+		statement.setString(4, cachorro.getGrupo());
+		statement.setString(4, cachorro.getSom());
+		
 		return statement.executeUpdate() > 0;
 	}
 
+	public boolean alterar(Integer codigo, String nome) throws SQLException{
+		String sql = "UPDATE CACHORRO SET CAC_NOME = ? WHERE CAC_CODIGO = ?";
+		 
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setString(1, nome);
+		statement.setInt(2, codigo);
+		 
+		return statement.executeUpdate() > 0;
+	}
+	
+	public boolean excluir(Integer codigo) throws SQLException{
+		String sql = "DELETE CACHORRO WHERE CAC_CODIGO = ?";
+		 
+		PreparedStatement statement = con.prepareStatement(sql);
+		statement.setInt(1, codigo);
+		 
+		return statement.executeUpdate() > 0;
+	}
+	
 	public List<Cachorro> lista() throws SQLException {
 		List<Cachorro> lCachorro = new ArrayList<>();
-		String sql = "Select * from ANIMAL";
+		String sql = "Select * from CACHORRO";
 		try (PreparedStatement stmt = con.prepareStatement(sql)) {
 			stmt.execute();
 			try (ResultSet rs = stmt.getResultSet()) {

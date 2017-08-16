@@ -11,16 +11,29 @@ import br.com.renan.animais.model.PorquinhodaIndia;
 
 public class PorquinhodaIndiaService {
 
-	public static List<PorquinhodaIndia> listarPorquinhodaIndia() throws SQLException {
+	public void inserir(PorquinhodaIndia PorquinhodaIndia) throws SQLException{
 		try (Connection con = new ConnectionPoolOracle().getConnection()) {
-			return new PorquinhodaIndiaDAO(con).lista();
+			new PorquinhodaIndiaDAO(con).inserir(PorquinhodaIndia);
 		}
-
+	}
 	
+	public void alterar(Integer codigo, String nome) throws SQLException{
+		try (Connection con = new ConnectionPoolOracle().getConnection()) {
+			new PorquinhodaIndiaDAO(con).alterar(codigo, nome);
+		}
 	}
-
-	public List<PorquinhodaIndia> listar() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public void excluir(Integer codigo) throws SQLException{
+		try (Connection con = new ConnectionPoolOracle().getConnection()) {
+			new PorquinhodaIndiaDAO(con).excluir(codigo);
+		}
 	}
+	
+	public List<PorquinhodaIndia> listarPorquinhosDaIndia() throws SQLException{
+		try (Connection con = new ConnectionPoolOracle().getConnection()) {
+            return new PorquinhodaIndiaDAO(con).lista();
+		}
+	}
+	
 }
+
