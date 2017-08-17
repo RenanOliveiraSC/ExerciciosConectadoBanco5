@@ -16,7 +16,7 @@ public class Animal {
 	public void setSom(String som) {
 		this.som = som;
 	}
-
+ 
 	private String som;
 
 	public Animal(Integer codigo, String nome, String cor, Integer qtdPatas, String grupo, String som) {
